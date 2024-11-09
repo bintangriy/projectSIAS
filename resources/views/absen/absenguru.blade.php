@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4">Data Absensi</h1>
+    <h1 class="mt-4"></h1>
     <div class="card mb-4">
         
     </div>
@@ -14,6 +14,7 @@
         </div>
         <div class="card-body">
             <table id="datatablesSimple" class="table table-bordered">
+                <!--<a href="{{ route('absensi.create') }}" class="btn btn-primary">Tambah Absensi</a> -->
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -25,12 +26,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($absensis as $absensi)
+                    @foreach($absensiGuru as $absensi)
                         <tr>
                             <td>{{ $absensi->id }}</td>
                             <td>{{ optional($absensi->user)->name ?? 'Tidak ada user' }}</td>
                             <td>{{ \Carbon\Carbon::parse($absensi->tanggal_absensi)->translatedFormat('d F Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($absensi->jam_absensi)->format('H:i', '/indonesia') }}</td>
+                            <td>{{ \Carbon\Carbon::parse($absensi->jam_absensi)->format('H:i') }}</td>
                             <td>
                                 <a href="https://www.google.com/maps?q={{ $absensi->latitude }},{{ $absensi->longitude }}" 
                                    target="_blank" class="btn btn-primary btn-sm">

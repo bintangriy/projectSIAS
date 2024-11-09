@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use app\Http\Controllers\ProfilesisController;
+use App\Http\Controllers\AbsensiswaController;
 use App\Http\Controllers\DatasiswaController;
 use App\Http\Controllers\Datasiswa1Controller;
 use App\Http\Controllers\Datasiswa2Controller;
@@ -11,6 +13,8 @@ use App\Http\Controllers\Auth\Login1Controller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AllabsensiController;
+use App\Http\Controllers\AbsensiroleController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\SiswapageController;
 use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Redirect;
@@ -41,8 +45,9 @@ Route::get('/dashboard', function () {
 
 
 Route::get('/gurufront', function () {
-    return view('gurupage.frontend');
+    return view('layouts.gurumain');
 });
+
 //Route::get('/datasiswa', function () {
 //  return view('adminpage.datasiswa');
 //});
@@ -50,10 +55,10 @@ Route::get('/gurufront', function () {
 //Route::get('/dataguru', function () {
 //    return view('adminpage.dataguru');
 //});
+
 Route::middleware([CheckRole::class])->group(function () {
     Auth::routes();
 });
-
 
 Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     Route::get('/adminpage', [AdminpageController::class, 'index'])->name('adminpage.index');
@@ -67,7 +72,6 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     route::put('/dataguru/update/{dataguru}', [DataguruController::class, 'update'])->name('dataguru.update');
     route::delete('/dataguru/delete/{dataguru}', [DataguruController::class, 'destroy'])->name('dataguru.destroy');
 
-
     route::get('/datasiswa/create', [DatasiswaController::class, 'create'])->name('datasiswa.create');
     route::post('/datasiswa/store', [DatasiswaController::class, 'store'])->name('datasiswa.store');
     route::get('/datasiswa/edit/{datasiswa}', [DatasiswaController::class, 'edit'])->name('datasiswa.edit');
@@ -75,22 +79,35 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     route::delete('/datasiswa/delete/{datasiswa}', [DatasiswaController::class, 'destroy'])->name('datasiswa.destroy');
 
     Route::resource('/dataabsensi', AllabsensiController::class);
+    Route::get('/absensiguru', [AbsensiroleController::class, 'absensiGuru'])->name('absen.absenguru');
+    Route::get('/absensisiswa', [AbsensiroleController::class, 'absensiSiswa'])->name('absen.absensiswa');
 });
 
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {
     Route::get('/gurupage', [GurupageController::class, 'index'])->name('gurupage.index');
     Route::resource('/datasiswa1', \App\Http\Controllers\Datasiswa1Controller::class);
+    Route::get('/materi', [MateriController::class, 'index'])->name('materi.index');
+    Route::get('/materiupload', [MateriController::class, 'create'])->name('materi.create');
 });
 
 Route::middleware(['auth', 'CheckRole:siswa'])->group(function () {
     Route::get('/siswapage', [SiswapageController::class, 'index'])->name('siswapage.index');
     Route::resource('/datasiswa2', \App\Http\Controllers\Datasiswa2Controller::class);
+
+    Route::get('/profilesis', [\App\Http\Controllers\ProfilesisController::class, 'edit'])->name('profile.editsiswa');
+    Route::patch('/profilesis', [\App\Http\Controllers\ProfilesisController::class, 'update'])->name('profile.update');
+    Route::delete('/profilesis', [\App\Http\Controllers\ProfilesisController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('/absensiswa', AbsensiswaController::class);
 });
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/materi', [MateriController::class, 'store'])->name('materi.store');
+    Route::get('/materi/download/{id}', [MateriController::class, 'download'])->name('materi.download');
 
     Route::resource('/absensi', AbsensiController::class);
 });

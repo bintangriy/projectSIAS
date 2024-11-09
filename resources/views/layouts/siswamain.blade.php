@@ -31,7 +31,7 @@
     <!-- App Header -->
     <div class="appHeader bg-primary text-light">
         <div class="left">
-            <a href="/gurupage" class="headerButton goBack">
+            <a href="/siswapage" class="headerButton goBack">
                 <ion-icon name="chevron-back-outline"></ion-icon>
             </a>
         </div>
@@ -41,38 +41,36 @@
     <!-- * App Header -->
 
     <!-- App Capsule -->
-
     @yield('content')
-
     <!-- * App Capsule -->
 
     <!-- App Bottom Menu -->
     <div class="appBottomMenu">
-        <a href="/gurupage" class="item">
+        <a href="/siswapage" class="item">
             <div class="col">
                 <ion-icon name="file-tray-full-outline" role="img" class="md hydrated"
                     aria-label="file tray full outline"></ion-icon>
                 <strong>Dashboard</strong>
             </div>
         </a>
-        <a href="/profile" class="item">
+        <a href="/profilesis" class="item">
             <div class="col">
                 <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
                 <strong>Profile</strong>
             </div>
         </a>
-        <a href="/absensi/create" class="item">
+        <a href="/absensiswa/create" class="item">
             <div class="col">
                 <div class="action-button large">
                     <ion-icon name="camera" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
                 </div>
             </div>
         </a>
-        <a href="/materiupload" class="item">
+        <a href="/materi" class="item">
             <div class="col">
                 <ion-icon name="document-text-outline" role="img" class="md hydrated"
                     aria-label="document text outline"></ion-icon>
-                <strong>Materi</strong>
+                <strong>Docs</strong>
             </div>
         </a>
         

@@ -74,8 +74,8 @@
                             </a>
                             <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="layout-static.html">Absensi Siswa</a>
-                                    <a class="nav-link" href="layout-sidenav-light.html">Absensi Guru</a>
+                                    <a class="nav-link" href="{{ route('absen.absensiswa') }}">Absensi Siswa</a>
+                                    <a class="nav-link" href="{{ route('absen.absenguru') }}">Absensi Guru</a>
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Mapel</div>
