@@ -86,7 +86,6 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {
     Route::get('/gurupage', [GurupageController::class, 'index'])->name('gurupage.index');
     Route::resource('/datasiswa1', \App\Http\Controllers\Datasiswa1Controller::class);
-    Route::get('/materi', [MateriController::class, 'index'])->name('materi.index');
     Route::get('/materiupload', [MateriController::class, 'create'])->name('materi.create');
 });
 
@@ -106,6 +105,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/materi', [MateriController::class, 'index'])->name('materi.index');
     Route::post('/materi', [MateriController::class, 'store'])->name('materi.store');
     Route::get('/materi/download/{id}', [MateriController::class, 'download'])->name('materi.download');
 
