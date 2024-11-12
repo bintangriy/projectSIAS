@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdduserController;
 use app\Http\Controllers\ProfilesisController;
 use App\Http\Controllers\AbsensiswaController;
+use App\Http\Controllers\AbsensiswagurupageController;
 use App\Http\Controllers\DatasiswaController;
 use App\Http\Controllers\Datasiswa1Controller;
 use App\Http\Controllers\Datasiswa2Controller;
@@ -86,13 +87,15 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
 
     Route::get('/adduser', [AdduserController::class, 'index'])->name('adminpage.tabeluser');
     Route::get('/addusers/create', [AdduserController::class, 'create'])->name('adminpage.registeruser');
-    Route::post('/addusers', [AdduserController::class, 'store'])->name('adduser.store');
+    Route::post('/adduser', [AdduserController::class, 'store'])->name('adduser.store');
 });
 
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {
     Route::get('/gurupage', [GurupageController::class, 'index'])->name('gurupage.index');
     Route::resource('/datasiswa1', \App\Http\Controllers\Datasiswa1Controller::class);
     Route::get('/materiupload', [MateriController::class, 'create'])->name('materi.create');
+
+    Route::get('/absensi_siswa', [AbsensiswagurupageController::class, 'absensiswa']);
 });
 
 Route::middleware(['auth', 'CheckRole:siswa'])->group(function () {

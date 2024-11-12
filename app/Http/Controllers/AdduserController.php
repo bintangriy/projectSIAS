@@ -24,7 +24,7 @@ class AdduserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',
-            'role' => ['required', 'in:admin, guru, user'],
+            'role' => ['required', 'in:admin,guru,siswa'],
         ]);
 
         User::create([

@@ -101,7 +101,7 @@
                     </div>
                     </a>
                     <div class="col-6">
-                        <a href="{{ route('absen.absensiswa') }}"
+                        <a href="/absensi_siswa"
                         <div class="card gradasired">
                             <div class="card-body">
                                 <div class="presencecontent">
