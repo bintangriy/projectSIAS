@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdduserController;
 use app\Http\Controllers\ProfilesisController;
 use App\Http\Controllers\AbsensiswaController;
 use App\Http\Controllers\DatasiswaController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AllabsensiController;
 use App\Http\Controllers\AbsensiroleController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\SiswapageController;
 use App\Http\Middleware\CheckRole;
@@ -81,6 +83,10 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     Route::resource('/dataabsensi', AllabsensiController::class);
     Route::get('/absensiguru', [AbsensiroleController::class, 'absensiGuru'])->name('absen.absenguru');
     Route::get('/absensisiswa', [AbsensiroleController::class, 'absensiSiswa'])->name('absen.absensiswa');
+
+    Route::get('/adduser', [AdduserController::class, 'index'])->name('adminpage.tabeluser');
+    Route::get('/addusers/create', [AdduserController::class, 'create'])->name('adminpage.registeruser');
+    Route::post('/addusers', [AdduserController::class, 'store'])->name('adduser.store');
 });
 
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {
