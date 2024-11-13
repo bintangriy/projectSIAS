@@ -98,11 +98,14 @@
  
             <div id="layoutSidenav_content">
                 <main>
- 
-                    @yield('content')
- 
+                    <div class="container">
+                        <h1 class="news-title">{{ $news->title }}</h1>
+                        <div class="news-date">{{ \Carbon\Carbon::parse($news->created_at)->format('d-m-Y') }}</div>
+                        <div class="news-content">{{ $news->content }}</div>
+                        <a href="{{ route('news.index') }}">← Kembali ke Daftar Berita</a>
+                    </div>
                 </main>
- 
+        
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">

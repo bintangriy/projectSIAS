@@ -6,6 +6,8 @@ use app\Http\Controllers\ProfilesisController;
 use App\Http\Controllers\AbsensiswaController;
 use App\Http\Controllers\AbsensiswagurupageController;
 use App\Http\Controllers\DatasiswaController;
+use App\Http\Controllers\NewsguruController;
+use App\Http\Controllers\NewssiswaController;
 use App\Http\Controllers\Datasiswa1Controller;
 use App\Http\Controllers\Datasiswa2Controller;
 use App\Http\Controllers\DataguruController;
@@ -13,6 +15,7 @@ use App\Http\Controllers\AdminpageController;
 use App\Http\Controllers\GurupageController;
 use App\Http\Controllers\Auth\Login1Controller;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\NewsController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AllabsensiController;
 use App\Http\Controllers\AbsensiroleController;
@@ -88,12 +91,19 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     Route::get('/adduser', [AdduserController::class, 'index'])->name('adminpage.tabeluser');
     Route::get('/addusers/create', [AdduserController::class, 'create'])->name('adminpage.registeruser');
     Route::post('/adduser', [AdduserController::class, 'store'])->name('adduser.store');
+
+    Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::post('/news', [NewsController::class, 'store'])->name('news.store');
 });
 
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {
     Route::get('/gurupage', [GurupageController::class, 'index'])->name('gurupage.index');
     Route::resource('/datasiswa1', \App\Http\Controllers\Datasiswa1Controller::class);
     Route::get('/materiupload', [MateriController::class, 'create'])->name('materi.create');
+
+    Route::get('/newsguru', [NewsguruController::class, 'index'])->name('newsguru.index');
+    Route::get('/newsguru/{id}', [NewsguruController::class, 'show'])->name('newsguru.show');
+
 
     Route::get('/absensi_siswa', [AbsensiswagurupageController::class, 'absensiswa']);
 });
@@ -106,6 +116,10 @@ Route::middleware(['auth', 'CheckRole:siswa'])->group(function () {
     Route::patch('/profilesis', [\App\Http\Controllers\ProfilesisController::class, 'update'])->name('profile.update');
     Route::delete('/profilesis', [\App\Http\Controllers\ProfilesisController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/newssiswa', [NewssiswaController::class, 'index'])->name('newssiswa.index');
+    Route::get('/newssiswa/{id}', [NewssiswaController::class, 'show'])->name('newssiswa.show');
+
+
     Route::resource('/absensiswa', AbsensiswaController::class);
 });
 
@@ -117,6 +131,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/materi', [MateriController::class, 'index'])->name('materi.index');
     Route::post('/materi', [MateriController::class, 'store'])->name('materi.store');
     Route::get('/materi/download/{id}', [MateriController::class, 'download'])->name('materi.download');
+
+    Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
+
 
     Route::resource('/absensi', AbsensiController::class);
 });
