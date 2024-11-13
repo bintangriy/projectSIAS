@@ -59,7 +59,7 @@
                         </div>
                         <div class="item-menu text-center">
                             <div class="menu-icon">
-                                <a href="" class="danger" style="font-size: 40px;">
+                                <a href="" class="warning" style="font-size: 40px;">
                                     <ion-icon name="calendar-number"></ion-icon>
                                 </a>
                             </div>
@@ -69,13 +69,21 @@
                         </div>
                         <div class="item-menu text-center">
                             <div class="menu-icon">
-                                <a href="/absensi" class="warning" style="font-size: 40px;">
-                                    <ion-icon name="document-text"></ion-icon>
+                                
+                                <a href="{{ route('logout') }}" class="danger" style="font-size: 40px;"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit()">
+                                        <ion-icon name="log-out-outline"></ion-icon>
                                 </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="s" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                             <div class="menu-name">
-                                <span class="text-center">Histori</span>
+                                <span class="text-center">Logout</span>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -123,46 +131,41 @@
 
     <!-- App Bottom Menu -->
     <div class="appBottomMenu">
-        <a href="/gurupage" class="item">
-            <div class="col">
-                <ion-icon name="file-tray-full-outline" role="img" class="md hydrated"
-                    aria-label="file tray full outline"></ion-icon>
-                <strong>Dashboard</strong>
-            </div>
-        </a>
-        <a href="/profile" class="item">
-            <div class="col">
-                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
-                <strong>Profile</strong>
-            </div>
-        </a>
-        <a href="/absensi/create" class="item">
-            <div class="col">
-                <div class="action-button large">
-                    <ion-icon name="camera" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+        <div class="appBottomMenu">
+            <a href="/gurupage" class="item">
+                <div class="col">
+                    <ion-icon name="file-tray-full-outline" role="img" class="md hydrated"
+                        aria-label="file tray full outline"></ion-icon>
+                    <strong>Dashboard</strong>
                 </div>
-            </div>
-        </a>
-        <a href="/materiupload" class="item">
-            <div class="col">
-                <ion-icon name="document-text-outline" role="img" class="md hydrated"
-                    aria-label="document text outline"></ion-icon>
-                <strong>Materi</strong>
-            </div>
-        </a>
-        
-        <a href="{{ route('logout') }}" class="item"
-            onclick="event.preventDefault();
-            document.getElementById('logout-form').submit()">
-            <div class="col">
-                <ion-icon name="log-out-outline"></ion-icon>
-                <strong>Logout</strong>
-            </div>
-        </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="s" class="d-none">
-            @csrf
-        </form>
+            </a>
+            <a href="/absensi" class="item">
+                <div class="col">
+                    <ion-icon name="document-text-outline"  role="img" class="md hydrated"
+                        aria-label="document text outline"></ion-icon>
+                    <strong>Histori</strong>
+                </div>
+            </a>
+            <a href="/absensi/create" class="item">
+                <div class="col">
+                    <div class="action-button large">
+                        <ion-icon name="camera" role="img" class="md hydrated" aria-label="add outline"></ion-icon>
+                    </div>
+                </div>
+            </a>
+            <a href="/materiupload" class="item">
+                <div class="col">
+                    <ion-icon name="clipboard-outline" role="img" class="md hydrated"
+                        aria-label="clipboard outline"></ion-icon>
+                    <strong>Materi</strong>
+                </div>
+            </a>
+            <a href="/newsguru" class="item">
+                <div class="col">
+                    <ion-icon name="megaphone-outline" role="img" class="md hydrated" aria-label="megaphone outline"></ion-icon>
+                    <strong>Pengumuman</strong>
+                </div>
+            </a>
     </div>
 
     <!-- * App Bottom Menu -->

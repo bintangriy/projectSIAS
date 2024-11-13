@@ -38,6 +38,8 @@
         <div class="pageTitle">Smartschool</div>
         <div class="right"></div>
     </div>
+    <br>
+    <br>
     <!-- * App Header -->
 
     <!-- App Capsule -->
@@ -55,10 +57,11 @@
                 <strong>Dashboard</strong>
             </div>
         </a>
-        <a href="/profile" class="item">
+        <a href="/absensi" class="item">
             <div class="col">
-                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
-                <strong>Profile</strong>
+                <ion-icon name="document-text-outline"  role="img" class="md hydrated"
+                    aria-label="document text outline"></ion-icon>
+                <strong>Histori</strong>
             </div>
         </a>
         <a href="/absensi/create" class="item">
@@ -70,24 +73,17 @@
         </a>
         <a href="/materiupload" class="item">
             <div class="col">
-                <ion-icon name="document-text-outline" role="img" class="md hydrated"
-                    aria-label="document text outline"></ion-icon>
+                <ion-icon name="clipboard-outline" role="img" class="md hydrated"
+                    aria-label="clipboard outline"></ion-icon>
                 <strong>Materi</strong>
             </div>
         </a>
-        
-        <a href="{{ route('logout') }}" class="item"
-            onclick="event.preventDefault();
-            document.getElementById('logout-form').submit()">
+        <a href="/newsguru" class="item">
             <div class="col">
-                <ion-icon name="log-out-outline"></ion-icon>
-                <strong>Logout</strong>
+                <ion-icon name="megaphone-outline" role="img" class="md hydrated" aria-label="megaphone outline"></ion-icon>
+                <strong>Pengumuman</strong>
             </div>
         </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="s" class="d-none">
-            @csrf
-        </form>
     </div>
 
 

@@ -1,4 +1,4 @@
-@extends('layouts.siswamain')
+@extends('layouts.gurumain')
 @section('content')
     
     <title>News</title>

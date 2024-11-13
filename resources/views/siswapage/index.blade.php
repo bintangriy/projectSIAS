@@ -59,7 +59,7 @@
                         </div>
                         <div class="item-menu text-center">
                             <div class="menu-icon">
-                                <a href="" class="danger" style="font-size: 40px;">
+                                <a href="" class="warning" style="font-size: 40px;">
                                     <ion-icon name="calendar-number"></ion-icon>
                                 </a>
                             </div>
@@ -69,12 +69,19 @@
                         </div>
                         <div class="item-menu text-center">
                             <div class="menu-icon">
-                                <a href="/absensiswa" class="warning" style="font-size: 40px;">
-                                    <ion-icon name="document-text"></ion-icon>
+                                
+                                <a href="{{ route('logout') }}" class="danger" style="font-size: 40px;"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit()">
+                                        <ion-icon name="log-out-outline"></ion-icon>
                                 </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="s" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                             <div class="menu-name">
-                                <span class="text-center">Histori</span>
+                                <span class="text-center">Logout</span>
                             </div>
                         </div>
                     </div>
@@ -93,10 +100,11 @@
                 <strong>Dashboard</strong>
             </div>
         </a>
-        <a href="/profilesis" class="item">
+        <a href="/absensiswa" class="item">
             <div class="col">
-                <ion-icon name="people-outline" role="img" class="md hydrated" aria-label="people outline"></ion-icon>
-                <strong>Profile</strong>
+                <ion-icon name="document-text-outline"  role="img" class="md hydrated"
+                    aria-label="document text outline"></ion-icon>
+                <strong>Histori</strong>
             </div>
         </a>
         <a href="/absensiswa/create" class="item">
@@ -108,24 +116,17 @@
         </a>
         <a href="/materi" class="item">
             <div class="col">
-                <ion-icon name="document-text-outline" role="img" class="md hydrated"
-                    aria-label="document text outline"></ion-icon>
-                <strong>Docs</strong>
+                <ion-icon name="clipboard-outline" role="img" class="md hydrated"
+                    aria-label="clipboard outline"></ion-icon>
+                <strong>Materi</strong>
             </div>
         </a>
-        
-        <a href="{{ route('logout') }}" class="item"
-            onclick="event.preventDefault();
-            document.getElementById('logout-form').submit()">
+        <a href="/newssiswa" class="item">
             <div class="col">
-                <ion-icon name="log-out-outline"></ion-icon>
-                <strong>Logout</strong>
+                <ion-icon name="megaphone-outline" role="img" class="md hydrated" aria-label="megaphone outline"></ion-icon>
+                <strong>Pengumuman</strong>
             </div>
         </a>
-
-        <form id="logout-form" action="{{ route('logout') }}" method="s" class="d-none">
-            @csrf
-        </form>
     </div>
     <!-- * App Bottom Menu -->
 
