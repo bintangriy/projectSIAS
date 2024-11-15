@@ -82,7 +82,7 @@
                             <div class="sb-sidenav-menu-heading">Mapel</div>
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Jadwal Pelajaran
+                                Daftar Mapel
                             </a>
                             <a class="nav-link" href="tables.html">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>

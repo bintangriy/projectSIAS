@@ -13,6 +13,7 @@ use App\Http\Controllers\Datasiswa2Controller;
 use App\Http\Controllers\DataguruController;
 use App\Http\Controllers\AdminpageController;
 use App\Http\Controllers\GurupageController;
+use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\Auth\Login1Controller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\NewsController;
@@ -94,6 +95,8 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
 
     Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
     Route::post('/news', [NewsController::class, 'store'])->name('news.store');
+
+    Route::resource('/nilai', NilaiController::class);
 });
 
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {
@@ -137,6 +140,7 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('/absensi', AbsensiController::class);
+    Route::resource('/materi', MateriController::class);
 });
 
 

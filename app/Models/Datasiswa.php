@@ -15,4 +15,9 @@ class Datasiswa extends Model
         'alamat',
         'jenis_kelamin',
     ];
+
+    public function nilais()
+    {
+        return $this->hasMany(Nilai::class);
+    }
 }

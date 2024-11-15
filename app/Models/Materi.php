@@ -10,5 +10,10 @@ class Materi extends Model
     use HasFactory;
 
     // Tentukan atribut yang dapat diisi secara massal
-    protected $fillable = ['judul', 'nip', 'deskripsi', 'file_path']; // Tambahkan atribut lain yang diperlukan
+    protected $fillable = ['judul', 'nip', 'deskripsi', 'file_path'];
+
+    public function datasiswa()
+    {
+        return $this->belongsTo(Dataguru::class);
+    }
 }

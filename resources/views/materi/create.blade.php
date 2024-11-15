@@ -14,6 +14,14 @@
             <textarea name="deskripsi" class="form-control"></textarea>
         </div>
         <div class="form-group">
+            <label for="nip">Guru</label>
+            <select name="nip" id="nip" class="form-control">
+                @foreach($gurus as $guru)
+                    <option value="{{ $guru->nip }}">{{ $guru->nama}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             <label>Upload File</label>
             <input type="file" name="file" class="form-control" required>
         </div>
