@@ -11,6 +11,7 @@ use App\Http\Controllers\NewssiswaController;
 use App\Http\Controllers\Datasiswa1Controller;
 use App\Http\Controllers\Datasiswa2Controller;
 use App\Http\Controllers\DataguruController;
+use App\Http\Controllers\DatakelasController;
 use App\Http\Controllers\AdminpageController;
 use App\Http\Controllers\GurupageController;
 use App\Http\Controllers\NilaiController;
@@ -50,11 +51,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::get('/gurufront', function () {
-    return view('layouts.gurumain');
-});
-
 //Route::get('/datasiswa', function () {
 //  return view('adminpage.datasiswa');
 //});
@@ -72,6 +68,8 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
 
     Route::resource('/dataguru', \App\Http\Controllers\DataguruController::class);
     Route::resource('/datasiswa', \App\Http\Controllers\DatasiswaController::class);
+    Route::resource('/adduser', AdduserController::class);
+
 
     route::get('/dataguru/create', [DataguruController::class, 'create'])->name('dataguru.create');
     route::post('/dataguru/store', [DataguruController::class, 'store'])->name('dataguru.store');
@@ -89,14 +87,26 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     Route::get('/absensiguru', [AbsensiroleController::class, 'absensiGuru'])->name('absen.absenguru');
     Route::get('/absensisiswa', [AbsensiroleController::class, 'absensiSiswa'])->name('absen.absensiswa');
 
-    Route::get('/adduser', [AdduserController::class, 'index'])->name('adminpage.tabeluser');
-    Route::get('/addusers/create', [AdduserController::class, 'create'])->name('adminpage.registeruser');
+    Route::get('/addusers/create', [AdduserController::class, 'create'])->name('adduser.create');
     Route::post('/adduser', [AdduserController::class, 'store'])->name('adduser.store');
+    route::get('/adduser/edit/{users}', [AdduserController::class, 'edit'])->name('adduser.edit');
+    route::put('/adduser/update/{users}', [AdduserController::class, 'update'])->name('adduser.update');
+    route::delete('/adduser/delete/{users}', [AdduserController::class, 'destroy'])->name('adduser.destroy');
 
     Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
     Route::post('/news', [NewsController::class, 'store'])->name('news.store');
 
-    Route::resource('/nilai', NilaiController::class);
+    Route::resource('datakelas', DatakelasController::class);
+    Route::get('/datakelas/edit/{datakelas}', [DatakelasController::class, 'edit'])->name('datakelas.edit');
+    Route::put('/datakelas/update/{datakelas}', [DatakelasController::class, 'update'])->name('datakelas.update');
+    Route::delete('/datakelas/delete/{datakelas}', [DatakelasController::class, 'destroy'])->name('datakelas.destroy');
+
+    Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index');
+    Route::get('/nilai/create', [NilaiController::class, 'create'])->name('nilai.create');
+    Route::post('/nilai', [NilaiController::class, 'store'])->name('nilai.store');
+    Route::get('/nilai/{id}/edit', [NilaiController::class, 'edit'])->name('nilai.edit');
+    Route::put('/nilai/{id}', [NilaiController::class, 'update'])->name('nilai.update');
+    Route::delete('/nilai/{id}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
 });
 
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {

@@ -12,6 +12,7 @@ class Datasiswa extends Model
     protected $fillable = [
         'nis',
         'nama',
+        'kelas',
         'alamat',
         'jenis_kelamin',
     ];
@@ -19,5 +20,10 @@ class Datasiswa extends Model
     public function nilais()
     {
         return $this->hasMany(Nilai::class);
+    }
+
+    public function datakelas()
+    {
+        return $this->belongsTo(Datakelas::class, 'id_kelas', 'kelas');
     }
 }

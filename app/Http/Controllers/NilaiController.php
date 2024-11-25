@@ -10,25 +10,60 @@ class NilaiController extends Controller
 {
     public function index()
     {
-        $nilais = Nilai::with('siswa')->get();
+        $nilais = Nilai::all();
         return view('nilai.index', compact('nilais'));
     }
 
     public function create()
     {
-        $siswas = Datasiswa::all(); // Ambil data siswa untuk pilihan
-        return view('nilai.create', compact('siswas'));
+        return view('nilai.create');
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'siswa_id' => 'required',
-            'mata_pelajaran' => 'required|string',
-            'nilai' => 'required|numeric|between:0,100',
+        $validated = $request->validate([
+            'nis' => 'required|max:20',
+            'ppkn' => 'required|numeric',
+            'b_indo' => 'required|numeric',
+            'agama' => 'required|numeric',
+            'mtk' => 'required|numeric',
+            'ipa' => 'required|numeric',
+            'ips' => 'required|numeric',
+            'b_inggris' => 'required|numeric',
         ]);
 
-        Nilai::create($request->all());
-        return redirect()->route('nilai.index')->with('success', 'Nilai berhasil ditambahkan!');
+        $validated['rata_rata'] = collect($validated)->except(['nis', 'nama', 'gender'])->avg();
+
+        Nilai::create($validated);
+
+        return redirect()->route('nilai.index')->with('success', 'Data berhasil ditambahkan!');
+    }
+
+    public function edit($id)
+    {
+        $nilais = Nilai::findOrFail($id);
+        return view('nilai.edit', compact('nilais'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $nilais = Nilai::findOrFail($id);
+
+        $validated = $request->validate([
+            'nis' => 'required|max:20',
+            'ppkn' => 'required|numeric',
+            'b_indo' => 'required|numeric',
+            'agama' => 'required|numeric',
+            'mtk' => 'required|numeric',
+            'ipa' => 'required|numeric',
+            'ips' => 'required|numeric',
+            'b_inggris' => 'required|numeric',
+        ]);
+
+        $validated['rata_rata'] = collect($validated)->except(['nis', 'nama', 'gender'])->avg();
+
+        $nilais->update($validated);
+
+        return redirect()->route('nilai.index')->with('success', 'Data berhasil diupdate!');
     }
 }

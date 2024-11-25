@@ -22,6 +22,7 @@
                                         <tr>
                                             <th>NIS</th>
                                             <th>Nama</th>
+                                            <th>Kelas</th>
                                             <th>Alamat</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
@@ -31,16 +32,20 @@
                                         <tr>
                                             <th>NIS</th>
                                             <th>Nama</th>
+                                            <th>Kelas</th>
                                             <th>Alamat</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        @foreach ($datasiswa as $k)
+                                        @foreach ($datasiswa as $k)         
                                         <tr>
                                             <td>{{ $k->nis }}</td>
                                             <td>{{ $k->nama }}</td>
+                                            
+                                            <td>{{ ($k->datakelas)->kelas ?? 'Tidak ada kelas' }}</td>
+                                            
                                             <td>{{ $k->alamat }}</td>
                                             <td>{{ $k->jenis_kelamin }}</td>
                                             <td>

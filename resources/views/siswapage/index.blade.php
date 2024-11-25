@@ -59,16 +59,6 @@
                         </div>
                         <div class="item-menu text-center">
                             <div class="menu-icon">
-                                <a href="" class="warning" style="font-size: 40px;">
-                                    <ion-icon name="calendar-number"></ion-icon>
-                                </a>
-                            </div>
-                            <div class="menu-name">
-                                <span class="text-center">Cuti</span>
-                            </div>
-                        </div>
-                        <div class="item-menu text-center">
-                            <div class="menu-icon">
                                 
                                 <a href="{{ route('logout') }}" class="danger" style="font-size: 40px;"
                                     onclick="event.preventDefault();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Datakelas;
 use App\Models\Datasiswa;
 use illuminate\view\view;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,9 @@ class DatasiswaController extends Controller
     public function index(): view
     {
         //
-        $datasiswa = Datasiswa::all();
-        return view('adminpage.datasiswa', compact('datasiswa'));
+        $datakelas = Datakelas::all();
+        $datasiswa = Datasiswa::with('datakelas')->get();
+        return view('adminpage.datasiswa', compact('datasiswa', 'datakelas'));
     }
 
     /**
@@ -26,7 +28,9 @@ class DatasiswaController extends Controller
     public function create()
     {
         //
-        return view('adminpage.create');
+        $datakelas = Datakelas::all();
+        $datasiswa = Datasiswa::with('datakelas')->get();
+        return view('adminpage.create', compact('datasiswa', 'datakelas'));
     }
 
     /**
@@ -39,6 +43,7 @@ class DatasiswaController extends Controller
             [
                 'nis' => 'required|numeric',
                 'nama' => 'required|max:255',
+                'kelas' => 'required|numeric',
                 'alamat' => 'required|max:255',
                 'jenis_kelamin' => 'required|max:45',
             ],
@@ -56,6 +61,7 @@ class DatasiswaController extends Controller
         DB::table('datasiswas')->insert([
             'nis' => $request->nis,
             'nama' => $request->nama,
+            'kelas' => $request->kelas,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
         ]);
@@ -79,7 +85,8 @@ class DatasiswaController extends Controller
     public function edit(Datasiswa $datasiswa)
     {
         //
-        return view('adminpage.edit', compact('datasiswa'));
+        $datakelas = Datakelas::all();
+        return view('adminpage.edit', compact('datasiswa', 'datakelas'));
     }
 
     /**
@@ -92,6 +99,7 @@ class DatasiswaController extends Controller
             [
                 'nis' => 'required|numeric',
                 'nama' => 'required|max:45',
+                'kelas' => 'required|numeric',
                 'alamat' => 'required|max:45',
                 'jenis_kelamin' => 'required|max:45',
 
@@ -110,6 +118,7 @@ class DatasiswaController extends Controller
         DB::table('datasiswas')->where('nis', $datasiswa)->update([
             'nis' => $request->nis,
             'nama' => $request->nama,
+            'kelas' => $request->kelas,
             'alamat' => $request->alamat,
             'jenis_kelamin' => $request->jenis_kelamin,
         ]);

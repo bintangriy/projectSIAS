@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ $materi->judul }}</td>
                         <td>{{ $materi->deskripsi }}</td>
-                        <td>{{ $materi->nama}}</td>
+                        <td>{{ $materi->nip}}</td>
                         <td>
                             <a href="{{ route('materi.download', $materi->id) }}" class="btn btn-sm btn-success">Download</a>
                         </td>

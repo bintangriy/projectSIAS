@@ -12,7 +12,7 @@
                 Edit data
             </div>
             <div class="card-body">
-                <form action="{{ route('datasiswa.update', $datasiswa->nis) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('adduser.update', $datasiswa->nis) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="form-group">
@@ -28,6 +28,13 @@
                         @error('nama')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="kelas">Kelas:</label>
+                        <select name="kelas" id="kelas" class="form-control">
+                        @foreach ($datakelas as $kelas)
+                            <option value="{{ $kelas->id_kelas }}">{{ $kelas->kelas }}</option>
+                        @endforeach
                     </div>
                     <div class="form-group">
                         <label for="jenis">Alamat:</label>

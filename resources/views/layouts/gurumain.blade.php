@@ -47,7 +47,8 @@
     @yield('content')
 
     <!-- * App Capsule -->
-
+    <br>
+    <br>
     <!-- App Bottom Menu -->
     <div class="appBottomMenu">
         <a href="/gurupage" class="item">

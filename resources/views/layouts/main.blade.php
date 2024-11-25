@@ -65,7 +65,8 @@
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="datasiswa">Data Siswa</a>
                                     <a class="nav-link" href="dataguru">Data Guru</a>
-                                    <a class="nav-link" href="adduser">Tambah User</a>
+                                    <a class="nav-link" href="datakelas">Data Kelas</a>
+                                    <a class="nav-link" href="adduser">Tambah User</a>                 
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -84,7 +85,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Daftar Mapel
                             </a>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="{{ route('nilai.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Nilai
                             </a>
