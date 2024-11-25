@@ -2,25 +2,27 @@
 
 @section('content')
 <div class="container">
-    <h1>Tambah Nilai Siswa</h1>
+    <h1>Tambah Data Nilai</h1>
     <form action="{{ route('nilai.store') }}" method="POST">
         @csrf
-        <div class="form-group">
-            <label for="siswa_id">Nama Siswa</label>
-            <select name="siswa_id" id="siswa_id" class="form-control">
-                @foreach($siswas as $siswa)
-                    <option value="{{ $siswa->id }}">{{ $siswa->nama }}</option>
-                @endforeach
-            </select>
+        <div class="mb-3">
+            <label for="nis" class="form-label">NIS</label>
+            <input type="text" class="form-control @error('nis') is-invalid @enderror" id="nis" name="nis" value="{{ old('nis') }}">
+            @error('nis')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="mata_pelajaran">Mata Pelajaran</label>
-            <input type="text" name="mata_pelajaran" class="form-control" required>
+
+        @foreach(['ppkn' => 'PPKN', 'b_indo' => 'Bahasa Indonesia', 'agama' => 'Agama', 'mtk' => 'Matematika', 'ipa' => 'IPA', 'ips' => 'IPS', 'b_inggris' => 'Bahasa Inggris'] as $field => $label)
+        <div class="mb-3">
+            <label for="{{ $field }}" class="form-label">{{ $label }}</label>
+            <input type="number" class="form-control @error($field) is-invalid @enderror" id="{{ $field }}" name="{{ $field }}" value="{{ old($field) }}">
+            @error($field)
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
-        <div class="form-group">
-            <label for="nilai">Nilai</label>
-            <input type="number" name="nilai" class="form-control" step="0.01" required>
-        </div>
+        @endforeach
+
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>

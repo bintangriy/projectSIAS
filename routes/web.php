@@ -104,9 +104,9 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     Route::get('/nilai', [NilaiController::class, 'index'])->name('nilai.index');
     Route::get('/nilai/create', [NilaiController::class, 'create'])->name('nilai.create');
     Route::post('/nilai', [NilaiController::class, 'store'])->name('nilai.store');
-    Route::get('/nilai/{id}/edit', [NilaiController::class, 'edit'])->name('nilai.edit');
-    Route::put('/nilai/{id}', [NilaiController::class, 'update'])->name('nilai.update');
-    Route::delete('/nilai/{id}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
+    Route::get('/nilai/{nilais}/edit', [NilaiController::class, 'edit'])->name('nilai.edit');
+    Route::put('/nilai/{nilais}', [NilaiController::class, 'update'])->name('nilai.update');
+    Route::delete('/nilai/{nilais}', [NilaiController::class, 'destroy'])->name('nilai.destroy');
 });
 
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {

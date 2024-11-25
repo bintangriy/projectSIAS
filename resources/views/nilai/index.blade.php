@@ -9,7 +9,7 @@
     
     <div class="card mb-4">
         <div class="card-header">
-            <a href="{{ route('datasiswa.create') }}" class="btn btn-sm btn-primary">Tambah Data</a>
+            <a href="{{ route('nilai.create') }}" class="btn btn-sm btn-primary">Tambah Data</a>
             <i class="fas fa-table me-1"></i>
             Tabel
         </div>

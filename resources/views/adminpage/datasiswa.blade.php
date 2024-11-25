@@ -44,7 +44,7 @@
                                             <td>{{ $k->nis }}</td>
                                             <td>{{ $k->nama }}</td>
                                             
-                                            <td>{{ ($k->datakelas)->kelas ?? 'Tidak ada kelas' }}</td>
+                                            <td>{{ $k->kelas }}</td>
                                             
                                             <td>{{ $k->alamat }}</td>
                                             <td>{{ $k->jenis_kelamin }}</td>

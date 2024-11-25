@@ -39,15 +39,15 @@ class NilaiController extends Controller
         return redirect()->route('nilai.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function edit($id)
+    public function edit($nilais)
     {
-        $nilais = Nilai::findOrFail($id);
+        $nilais = Nilai::findOrFail($nilais);
         return view('nilai.edit', compact('nilais'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $nilais)
     {
-        $nilais = Nilai::findOrFail($id);
+        $nilais = Nilai::findOrFail($nilais);
 
         $validated = $request->validate([
             'nis' => 'required|max:20',
@@ -60,10 +60,19 @@ class NilaiController extends Controller
             'b_inggris' => 'required|numeric',
         ]);
 
-        $validated['rata_rata'] = collect($validated)->except(['nis', 'nama', 'gender'])->avg();
+        $validated['rata_rata'] = collect($validated)->except(['nis'])->avg();
 
         $nilais->update($validated);
 
         return redirect()->route('nilai.index')->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function destroy(Nilai $nilais)
+    {
+        //
+        $nilais->delete();
+
+        return redirect()->route('nilai.index')
+            ->with('success', 'Data berhasil di hapus');
     }
 }
