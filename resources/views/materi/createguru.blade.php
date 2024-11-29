@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.gurumain')
 @section('content')
 <br>
 <div class="container">

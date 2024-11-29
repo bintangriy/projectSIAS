@@ -13,7 +13,6 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-
         @foreach(['ppkn' => 'PPKN', 'b_indo' => 'Bahasa Indonesia', 'agama' => 'Agama', 'mtk' => 'Matematika', 'ipa' => 'IPA', 'ips' => 'IPS', 'b_inggris' => 'Bahasa Inggris'] as $field => $label)
         <div class="mb-3">
             <label for="{{ $field }}" class="form-label">{{ $label }}</label>

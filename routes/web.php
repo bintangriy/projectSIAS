@@ -8,10 +8,13 @@ use App\Http\Controllers\AbsensiswagurupageController;
 use App\Http\Controllers\DatasiswaController;
 use App\Http\Controllers\NewsguruController;
 use App\Http\Controllers\NewssiswaController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\Datasiswa1Controller;
 use App\Http\Controllers\Datasiswa2Controller;
 use App\Http\Controllers\DataguruController;
 use App\Http\Controllers\DatakelasController;
+use App\Http\Controllers\MaterisiswaController;
+use App\Http\Controllers\MateriguruController;
 use App\Http\Controllers\AdminpageController;
 use App\Http\Controllers\GurupageController;
 use App\Http\Controllers\NilaiController;
@@ -70,6 +73,8 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
     Route::resource('/datasiswa', \App\Http\Controllers\DatasiswaController::class);
     Route::resource('/adduser', AdduserController::class);
 
+    Route::resource('/mapel', MapelController::class);
+
 
     route::get('/dataguru/create', [DataguruController::class, 'create'])->name('dataguru.create');
     route::post('/dataguru/store', [DataguruController::class, 'store'])->name('dataguru.store');
@@ -112,10 +117,16 @@ Route::middleware(['auth', 'CheckRole:admin'])->group(function () {
 Route::middleware(['auth', 'CheckRole:guru'])->group(function () {
     Route::get('/gurupage', [GurupageController::class, 'index'])->name('gurupage.index');
     Route::resource('/datasiswa1', \App\Http\Controllers\Datasiswa1Controller::class);
-    Route::get('/materiupload', [MateriController::class, 'create'])->name('materi.create');
 
     Route::get('/newsguru', [NewsguruController::class, 'index'])->name('newsguru.index');
     Route::get('/newsguru{id}', [NewsguruController::class, 'show'])->name('newsguru.show');
+
+    Route::get('/materig', [MateriguruController::class, 'index'])->name('materiguru.index');
+    Route::get('/materiupload', [MateriguruController::class, 'create'])->name('materiguru.create');
+    Route::post('/materig', [MateriguruController::class, 'store'])->name('materiguru.store');
+    Route::get('/materig/download/{id}', [MateriguruController::class, 'download'])->name('materiguru.download');
+
+    Route::resource('/materig', MateriguruController::class);
 
 
     Route::get('/absensi_siswa', [AbsensiswagurupageController::class, 'absensiswa']);
@@ -131,6 +142,8 @@ Route::middleware(['auth', 'CheckRole:siswa'])->group(function () {
 
     Route::get('/newssiswa', [NewssiswaController::class, 'index'])->name('newssiswa.index');
     Route::get('/newssiswa{id}', [NewssiswaController::class, 'show'])->name('newssiswa.show');
+
+    Route::get('/materis', [MaterisiswaController::class, 'index'])->name('materisiswa.index');
 
 
     Route::resource('/absensiswa', AbsensiswaController::class);

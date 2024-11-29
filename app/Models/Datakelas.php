@@ -15,6 +15,6 @@ class Datakelas extends Model
 
     public function datasiswa()
     {
-        return $this->hasMany(Datasiswa::class, 'id_kelas', 'kelas');
+        return $this->hasMany(Datasiswa::class, 'id_kelas', 'id_kelas');
     }
 }

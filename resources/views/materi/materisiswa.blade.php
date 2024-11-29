@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.siswamain')
 @section('content')
 
 <div class="container-fluid px-4">
@@ -9,7 +9,6 @@
     
     <div class="card mb-4">
         <div class="card-header">
-            <a href="{{ route('materi.create') }}" class="btn btn-sm btn-primary">Tambah File</a>
             <i class="fas fa-table me-1"></i>
             Tabel
         </div>

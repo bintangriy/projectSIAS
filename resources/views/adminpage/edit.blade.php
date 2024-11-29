@@ -12,46 +12,46 @@
                 Edit data
             </div>
             <div class="card-body">
-                <form action="{{ route('adduser.update', $datasiswa->nis) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('datasiswa.update', $datasiswa->nis) }}" method="POST">
                     @csrf
-                    @method('put')
+                    @method('PUT')
+                
                     <div class="form-group">
-                        <label for="nis">NIS:</label>
-                        <input type="text" class="form-control @error('nis') is-invalid @enderror" id="nis" name="nis" value="{{ $datasiswa->nis }}">
-                        @error('nis')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label for="nis">NIS</label>
+                        <input type="text" name="nis" id="nis" class="form-control" value="{{ $datasiswa->nis }}" readonly>
                     </div>
+                
                     <div class="form-group">
-                        <label for="nama">Nama:</label>
-                        <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" value="{{ $datasiswa->nama }}">
-                        @error('nama')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label for="nama">Nama</label>
+                        <input type="text" name="nama" id="nama" class="form-control" value="{{ $datasiswa->nama }}">
                     </div>
+                
                     <div class="form-group">
-                        <label for="kelas">Kelas:</label>
-                        <select name="kelas" id="kelas" class="form-control">
-                        @foreach ($datakelas as $kelas)
-                            <option value="{{ $kelas->id_kelas }}">{{ $kelas->kelas }}</option>
-                        @endforeach
+                        <label for="id_kelas">Kelas</label>
+                        <select name="id_kelas" id="id_kelas" class="form-control">
+                            @foreach($datakelas as $kelas)
+                                <option value="{{ $kelas->id_kelas }}" {{ $kelas->id_kelas == $datasiswa->id_kelas ? 'selected' : '' }}>
+                                    {{ $kelas->kelas }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
+                
                     <div class="form-group">
-                        <label for="jenis">Alamat:</label>
-                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" value="{{ $datasiswa->alamat }}">
-                        @error('alamat')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="alamat" id="alamat" class="form-control" value="{{ $datasiswa->alamat }}">
                     </div>
+                
                     <div class="form-group">
-                        <label for="jenis_kelamin">Jenis Kelamin:</label>
-                        <input type="text" class="form-control @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin" value="{{ $datasiswa->jenis_kelamin }}">
-                        @error('jenis_kelamin')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                        <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                            <option value="Laki-laki" {{ $datasiswa->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                            <option value="Perempuan" {{ $datasiswa->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn btn-primary mt-4">Submit</button>
-                </form>
+                
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>                
             </div>
         </div>
     </div>

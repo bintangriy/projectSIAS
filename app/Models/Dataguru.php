@@ -15,4 +15,9 @@ class Dataguru extends Model
         'pendidikan',
         'jabatan',
     ];
+
+    public function mapel()
+    {
+        return $this->hasMany(Mapel::class, 'pengajar', 'nip');
+    }
 }

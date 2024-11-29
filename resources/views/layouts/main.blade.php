@@ -64,7 +64,7 @@
                                     <a class="nav-link" href="datasiswa">Data Siswa</a>
                                     <a class="nav-link" href="dataguru">Data Guru</a>
                                     <a class="nav-link" href="datakelas">Data Kelas</a>
-                                    <a class="nav-link" href="adduser">Tambah User</a>                 
+                                    <a class="nav-link" href="adduser">Data User</a>                 
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -79,13 +79,22 @@
                                 </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">Mapel</div>
-                            <a class="nav-link" href="tables.html">
+                            <a class="nav-link" href="/mapel">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Daftar Mapel
                             </a>
                             <a class="nav-link" href="{{ route('nilai.index') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></i></div>
                                 Nilai
+                            </a>
+                            <a class="nav-link" href="{{ route('materi.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa fa-book" aria-hidden="true"></i></div>
+                                Materi
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Berita</div>
+                            <a class="nav-link" href="{{ route('news.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
+                                Pengumuman
                             </a>
                         </div>
                     </div>
@@ -105,12 +114,8 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            <div class="text-muted">Aplikasi SIAS</div>
+                            
                         </div>
                     </div>
                 </footer>

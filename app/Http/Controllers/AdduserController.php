@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class AdduserController extends Controller
 {
-    public function index()
+    public function index(): view
     {
-        $users = User::all(); // Mengambil semua data user
+        $users = User::orderBy('role', 'asc')->get();
         return view('adminpage.tabeluser', compact('users'));
     }
+
+
 
     public function create()
     {

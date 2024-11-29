@@ -16,7 +16,8 @@ class NilaiController extends Controller
 
     public function create()
     {
-        return view('nilai.create');
+        $datasiswa = Datasiswa::all();
+        return view('nilai.create', compact('datasiswa'));
     }
 
     public function store(Request $request)

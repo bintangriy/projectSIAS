@@ -104,7 +104,7 @@
                 </div>
             </div>
         </a>
-        <a href="/materi" class="item">
+        <a href="/materis" class="item">
             <div class="col">
                 <ion-icon name="clipboard-outline" role="img" class="md hydrated"
                     aria-label="clipboard outline"></ion-icon>

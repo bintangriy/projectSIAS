@@ -12,7 +12,7 @@ class Materi extends Model
     // Tentukan atribut yang dapat diisi secara massal
     protected $fillable = ['judul', 'nip', 'deskripsi', 'file_path'];
 
-    public function datasiswa()
+    public function dataguru()
     {
         return $this->belongsTo(Dataguru::class);
     }

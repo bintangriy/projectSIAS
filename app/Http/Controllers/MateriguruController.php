@@ -8,13 +8,33 @@ use App\Models\Dataguru;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class MateriController extends Controller
+class MateriguruController extends Controller
 {
-    // Tampilkan halaman upload materi untuk guru
+    public function index()
+    {
+        $materis = Materi::with('dataguru')->get();
+        return view('materi.materiguru', compact('materis'));
+    }
+
+    public function download($id)
+    {
+        $materi = Materi::findOrFail($id);
+
+        // Pastikan 'file_path' adalah path ke file yang ingin diunduh
+        $filePath = storage_path('public/' . $materi->uploads);
+
+        // Cek apakah file ada
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return redirect()->back()->with('error', 'File tidak ditemukan.');
+        }
+    }
+
     public function create()
     {
         $gurus = Dataguru::all();
-        return view('materi.create', compact('gurus'));
+        return view('materi.createguru', compact('gurus'));
     }
 
     // Simpan materi yang diupload
@@ -24,7 +44,7 @@ class MateriController extends Controller
             'judul' => 'required|string',
             'deskripsi' => 'required|string',
             'nip' => 'required',
-            'file' => 'required|file|mimes:pdf,doc,docx|max:2048', // Sesuaikan tipe file dan ukuran maksimal
+            'file' => 'required|file|mimes:pdf,doc,docx|max:2048',
         ]);
 
         // Proses unggah file
@@ -43,30 +63,5 @@ class MateriController extends Controller
         }
 
         return redirect()->back()->with('error', 'Gagal mengunggah file.');
-    }
-
-
-    // Tampilkan semua materi untuk siswa
-    public function index()
-    {
-        $materis = Materi::with('dataguru')->get();
-        return view('materi.index', compact('materis'));
-    }
-
-    // Download materi
-    // Download materi
-    public function download($id)
-    {
-        $materi = Materi::findOrFail($id);
-
-        // Pastikan 'file_path' adalah path ke file yang ingin diunduh
-        $filePath = storage_path('public/' . $materi->uploads);
-
-        // Cek apakah file ada
-        if (file_exists($filePath)) {
-            return response()->download($filePath);
-        } else {
-            return redirect()->back()->with('error', 'File tidak ditemukan.');
-        }
     }
 }
