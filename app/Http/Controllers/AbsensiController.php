@@ -12,7 +12,7 @@ class AbsensiController extends Controller
 {
     public function index()
     {
-        $absensis = Absensi::where('user_id', Auth::id())->get();
+        $absensis = Absensi::where('user_id', Auth::id())->orderBy('created_at', 'desc')->get();
         foreach ($absensis as $absensi) {
             if (is_null($absensi->user_id)) {
                 Log::info("User tidak ditemukan untuk absensi ID: {$absensi->id}");
