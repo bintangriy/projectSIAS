@@ -17,13 +17,13 @@ class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap any application services
      */
     public function boot(): void
     {
         //
-        $this->app['router']->aliasMiddleware('checkRole', \App\Http\Middleware\CheckRole::class);
-        Carbon::setLocale('id');
         config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
+        date_default_timezone_set('Asia/Jakarta');
     }
 }
